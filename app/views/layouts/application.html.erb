@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LegacySocialBlog</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <title>Legacy Social Blog | <%= @title %></title>
   <%= csrf_meta_tag %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+ </head>
+  <body>
+    <%= yield %>
+  </body>
 </html>
+
+ 
