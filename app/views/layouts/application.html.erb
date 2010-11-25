@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Legacy Social Blog | <%= @title %></title>
+  <title><%= title %></title>
   <%= csrf_meta_tag %>
- </head>
+  <%= render 'layouts/stylesheets' %>
+</head>
   <body>
-    <%= yield %>
+    <div class="container">
+    <%= render 'layouts/header' %>      
+      <section class="round">
+        <%= yield %>
+      </section>
+     <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
+
+
 
  
