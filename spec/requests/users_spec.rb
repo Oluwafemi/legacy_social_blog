@@ -24,14 +24,14 @@ describe "Users" do
       it "should make a new user" do
         lambda do
           visit signup_path
-          fill_in "Name", :with => "Adeyemi Henry"
-          fill_in "Email", :with => "sizesovers@yahoo.co"
+          fill_in "Name", :with => "Oluwafemi Ade"
+          fill_in "Email", :with => "favourfield@gmail.com"
           fill_in "Password", :with => "obedience"
           fill_in "Confirmation", :with => "obedience"
           click_button
           response.should have_selector("div.flash.success",
                                         :content => "Welcome")
-          response.should render_template('user/show')
+          response.should render_template('users/show')
         end.should change(User, :count).by(1)
       end
     end
