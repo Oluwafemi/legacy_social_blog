@@ -65,6 +65,15 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
+
+    it "should show the user's microposts" do
+      mp1 = Factory(:micropost, :user => @user, :content =>  "...a cornerstone in the place of honor.")
+      mp2 = Factory(:micropost, :user => @user, :content => "Whoever trusts in this stone as a foundation
+       will never have cause to regret it.")
+       get :show, :id => @user
+       response.should have_selector("span.content", :content => mp1.content)
+       response.should have_selector("span.content", :content => mp2.content)
+     end
   end
 
   describe "POST 'create'" do
@@ -144,6 +153,31 @@ describe UsersController do
       gravat_url = "http://gravatar.com/emails"
       response.should have_selector("a", :href => gravat_url,
                                          :content => "change") 
+    end
+  end
+
+  describe "signed-in users" do
+
+    before(:each) do
+      user = Factory(:user)
+      test_sign_in(user)
+    end
+
+    describe "GET 'new'" do
+
+      it "should be redirected to root_path" do
+        get :new
+        response.should redirect_to(root_path)
+      end
+    end
+
+    describe "POST 'create'" do
+
+      it "should redirect to root_path" do
+        post :create, :user => {:name => "New User", :email => "sizesovers@yahoo.co.uk",
+                 :password => "dedication", :password_confirmation => "dedication" }
+        response.should redirect_to(root_path)
+      end
     end
   end
 
