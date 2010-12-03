@@ -1,10 +1,12 @@
 .container {
-  width: 760px;
+  width: 710px;
 }
 
 body {
   /* to-do.1 we put a background img here around the centralized content*/
-  background: #cff;
+  background: #8B4513;/* #cff; */
+  font-family: Helvetica, Arial, sans-serif;  /* changed 3/12/10 */
+
 }
 
 header {
