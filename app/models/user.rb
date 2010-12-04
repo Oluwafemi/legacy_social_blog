@@ -79,6 +79,10 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed)
   end
 
+  def feed
+    Micropost.from_users_followed_by(self)
+  end
+
   def follow!(followed)
     relationships.create!(:followed_id => followed.id)
   end
