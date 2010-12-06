@@ -318,9 +318,9 @@ describe UsersController do
                                            :content => "2")
         response.should have_selector("a", :href => "/users?page=2",
                                            :content => "Next")
-      end                                 
-    end                 
-  end
+      end
+    end
+  end              
 
   describe "DELETE 'destroy'" do
 
@@ -343,11 +343,12 @@ describe UsersController do
       end
     end
 
-    describe "as an admin user" do
+    describe "an admin user" do
 
       before(:each) do
-        admin = Factory(:user, :email => "admin@miraculous.org", :admin => true)
-        test_sign_in(admin)
+        @admin = Factory(:user, :email => "admin@miraculous.org", :admin => true)
+        @another_admin = Factory(:user, :email => "another@miraculous.org", :admin => true)
+        test_sign_in(@admin)
       end
 
       it "should destroy the user" do
@@ -360,8 +361,72 @@ describe UsersController do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
       end
+
+      describe "should not be able to delete other admins & himself" do
+
+        it "should not delete himself" do
+          lambda do
+            delete :destroy, :id => @admin
+          end.should_not change(User, :count)
+        end
+
+        it "should not delete another admin user" do
+          lambda do
+            delete :destroy, :id => @another_admin
+          end.should_not change(User, :count)
+        end
+      end
     end
   end
+
+  describe "testing the delete links" do
+
+    before(:each) do
+      @users = []
+      10.times do
+        @users << Factory(:user, :email => Factory.next(:email))
+      end
+    end
+
+    describe "for normal users" do
+    
+      it "should not have a delete link" do
+        @user = test_sign_in(@users[0])
+        get :index
+        @users.each do |user|
+          response.should_not have_selector("a", :href => user_path(user),
+                                                 :content => "delete")
+        end
+      end
+    end
+
+    describe "for admin users" do
+
+      before(:each) do
+        admin = Factory(:user, :email => "miraculous@turnarounds.com", :admin => true)
+        admin_b = Factory(:user, :email => "blessing@perpetual.com", :admin => true)
+        admin_c = Factory(:user, :email => "allround@turnarounds.com", :admin => true)
+        test_sign_in(admin)
+        @admins = [admin, admin_b, admin_c]
+      end
+
+      it "should have a delete link for each non-admin user" do
+        get :index
+        @users.each do |user|
+          response.should have_selector("a", :href => user_path(user),
+                                             :content => "delete")
+        end
+      end
+
+      it "should not have delete links for all admin users" do
+        get :index
+        @admins.each do |admin|
+          response.should_not have_selector("a", :href => user_path(admin),
+                                                 :content => "delete")
+        end
+      end
+    end
+  end   
 
   describe "follow pages" do
 

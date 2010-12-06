@@ -61,5 +61,20 @@ describe "Users" do
         controller.should_not be_signed_in
       end
     end
+
+    describe "gravatar change link" do
+
+      describe "new window" do
+        it "should open in a new window" do
+          user = Factory(:user)
+          visit signin_path
+          fill_in :email, :with => user.email
+          fill_in :password, :with => user.password
+          click_button
+          visit edit_user_path(user)
+          response.should have_selector("a", :target => "_blank")
+        end
+      end
+    end
   end   
 end
