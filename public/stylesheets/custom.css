@@ -4,7 +4,7 @@
 
 body {
   /* to-do.1 we put a background img here around the centralized content*/
-  background: #8B4513;/* #cff; */
+  background: #191970;/* #cff; */
   font-family: Helvetica, Arial, sans-serif;  /* changed 3/12/10 */
 
 }
@@ -52,7 +52,7 @@ a.signup_button {
   text-align: center;
   width: 190px;
   color: #fff;
-  background: #006400;
+  background: #4169E1;/* #006400; */
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
