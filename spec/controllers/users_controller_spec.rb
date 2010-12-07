@@ -68,8 +68,7 @@ describe UsersController do
 
     it "should show the user's microposts" do
       mp1 = Factory(:micropost, :user => @user, :content =>  "...a cornerstone in the place of honor.")
-      mp2 = Factory(:micropost, :user => @user, :content => "Whoever trusts in this stone as a foundation
-       will never have cause to regret it.")
+      mp2 = Factory(:micropost, :user => @user, :content => "Whoever trusts in this stone as a foundation will never have cause to regret it.")
        get :show, :id => @user
        response.should have_selector("span.content", :content => mp1.content)
        response.should have_selector("span.content", :content => mp2.content)
