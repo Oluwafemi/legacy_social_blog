@@ -16,6 +16,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # we check her if the @user is !active so we can redirect and return
+    # the 2nd check should be for signed-in but ! necessary here
+    # as there is really no diff in displaying user profiles for signed and !signed-in
+    # other actions would catch un-authorized accesses themselves
     @microposts = @user.microposts.paginate(:page => params[:page])
     @title = @user.name
   end
@@ -23,6 +27,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      # everything begins here and some contradictions
+      # in users_controller_spec.rb might occur if ! signed-in here
+      # we need to change the logic of the test
       sign_in @user
       UserMailer.signup_confirmation(@user).deliver
       flash[:success] = "Welcome to Legacy Social Blog!"
@@ -31,7 +38,22 @@ class UsersController < ApplicationController
       @title = "Sign up"
       render 'new'
     end
+    rescue ActiveRecord::StatementInvalid
+      redirect_to root_url
+    rescue ActionController::InvalidAuthenticityToken
+      warning = "ActionController::InvalidAuthenticityToken: #{params.inspect}"
+      logger.warn warning
+      redirect_to root_url
   end
+
+  # email_verification links should be instrumented to
+  # call an action here, user = SomeModel.find(params[:id])
+  # if user.nil? flash[:error] and redirect to root_url
+  # if user.active_state
+  #    redirect_to root_url and return
+  # else 
+  #   user.active_state = true
+  # redirect_to user
 
   def edit
     @title = "Edit user"
