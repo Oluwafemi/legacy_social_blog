@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # we check her if the @user is !active so we can redirect and return
+    # we check here if the @user is !active so we can redirect and return
     # the 2nd check should be for signed-in but ! necessary here
     # as there is really no diff in displaying user profiles for signed and !signed-in
     # other actions would catch un-authorized accesses themselves
@@ -53,6 +53,7 @@ class UsersController < ApplicationController
   #    redirect_to root_url and return
   # else 
   #   user.active_state = true
+  #   sign user in and
   # redirect_to user
 
   def edit

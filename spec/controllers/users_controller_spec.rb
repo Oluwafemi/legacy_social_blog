@@ -123,6 +123,7 @@ describe UsersController do
         flash[:success].should =~ /welcome to Legacy Social Blog/i
       end
 
+      # this should change due to email-vrification
       it "should sign a newly created user in" do
         post :create, :user => @attr
         controller.should be_signed_in
@@ -464,4 +465,7 @@ describe UsersController do
       end
     end
   end
+
+  # describe "should get and paginate all the user's microposts
+  # get 'microposts' :id = @user
 end

@@ -1,3 +1,4 @@
+
 require 'development_mail_interceptor'
 
 ActionMailer::Base.delivery_method = :smtp

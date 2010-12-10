@@ -19,6 +19,10 @@ class MicropostsController < ApplicationController
     redirect_back_or root_path
   end
 
+  # should get all mics for @users_mic = User.find(params[:user_id]).microposts
+  #def index
+  #end
+
   private
 
   def authorized_user
