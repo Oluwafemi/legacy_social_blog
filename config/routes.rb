@@ -3,7 +3,7 @@ LegacySocialBlog::Application.routes.draw do
     member do
       get :following, :followers
     end
-    resources :microposts, :only => :index
+    #resources :microposts, :only => :index
   end
   resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]

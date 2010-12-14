@@ -5,9 +5,9 @@ ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :address => "smtp.gmail.com",
   :port => 587,
-  :domain => "abidaphotel.com",
-  :user_name => "Oluwafemi@abidaphotel.com",
-  :password => "gr8grace",
+  :domain => "mac-up.net",
+  :user_name => "corporate@mac-up.net",
+  :password => "godisgood",
   :authentication => 'plain',
   :enable_starttls_auto => true 
 }
