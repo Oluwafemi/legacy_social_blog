@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default :from => "mac-up.net"
-  default_url_options[:host] = "mac-up.net"
+  default :from => "localhost:3000"
+  default_url_options[:host] = "localhost:3000"
 
   def signup_confirmation(user)
     @user = user
