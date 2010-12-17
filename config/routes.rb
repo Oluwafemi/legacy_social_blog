@@ -3,14 +3,16 @@ LegacySocialBlog::Application.routes.draw do
     member do
       get :following, :followers
     end
-    #resources :microposts, :only => :index
+    resources :microposts, :only => :index
   end
   resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
 
   # We need a route for verify-email to users#verify_email
+  # run 'rake routes' to see all our routes
 
+  match '/users/verify/:id', :to => 'users#verify'
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
