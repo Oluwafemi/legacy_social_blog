@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       # in users_controller_spec.rb might occur if ! signed-in here
       # we need to change the logic of the test
       sign_in @user
-      UserMailer.signup_confirmation(@user).deliver
+      #UserMailer.signup_confirmation(@user).deliver
       flash[:success] = "Welcome to Legacy Social Blog!"
       redirect_to @user
     else

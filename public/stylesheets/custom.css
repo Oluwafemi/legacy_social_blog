@@ -3,19 +3,23 @@
 }
 
 body {
-  /* to-do.1 we put a background img here around the centralized content*/
-  background: #191970;/* #cff; */
-  font-family: Helvetica, Arial, sans-serif;  /* changed 3/12/10 */
+  background: #5F9EA0;
+  font-family: Helvetica, Arial, sans-serif;  
 
+}
+
+.shadow {
+   box-shadow: 0px 3px 10px #000;
+  -moz-box-shadow: 0px 3px 10px #000;
+  -webkit-box-shadow: 0px 3px 10px #000;
+  
+  /* Crazy IE shadow */
+  zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#fff', Direction=135, Strength=3);
 }
 
 header {
   padding-top: 20px;
-}
-
-header img {
-  padding: 1em;
-  background: #fff;
 }
 
 section {
@@ -37,13 +41,64 @@ a {
 }
 
 a:hover {
-  color: #069;
-  text-decoration: underline;
+  color: #4B0082;
 }
 
-a:visited {
+/*a:visited {
   color: #069;
+}*/
+
+nav {
+  float: right;
+} 
+
+nav {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
 }
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline;
+}
+
+nav ul li a {
+  color: #000080;
+  padding: 5px 15px 5px 15px;
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  color: #B22222;
+}
+
+header nav {
+  background: none;
+  font-weight: normal;
+}
+
+ul.real {
+  margin-left: 0;
+  padding-left: 0;
+  padding-top: 6px;
+  padding-bottom: 5px;
+}
+
+/* to identify where we are on site */
+
+a.location {
+  color: #FFD700;
+}
+a.location:hover {
+  color: #FFD700;
+}
+  
 
 a.signup_button {
   margin-left: auto;
@@ -58,39 +113,6 @@ a.signup_button {
   padding: 20px;
 }
 
-nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
-}
-
-nav {
-  float: right;
-}
-
-nav {
-  background-color: white;
-  padding: 0 0.7em;
-  white-space: nowrap;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
-}
-
-nav ul li a:visited {
-  color: #09c;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-}
 
 /* Round corners */
 /* to-do.2 IE currently won't respond to this effect */
@@ -103,7 +125,7 @@ nav ul li a:hover {
 
 footer {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 710px;
   margin-left: auto;
   margin-right: auto;
