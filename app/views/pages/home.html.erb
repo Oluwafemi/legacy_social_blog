@@ -13,12 +13,12 @@
     </tr>
   </table>
 <% else %>
-<h1>Legacy Social Blog</h1>
-<p>
-  Welcome to the microblogging site.
-</p>
-<div>
-<p>It's free, easy and exciting</p>
-<%= link_to "Get Started", signup_path, :class => "signup_button round" %>
-</div>
+  <h1>Legacy Social Blog</h1>
+  <p>
+    Welcome to the microblogging site.
+  </p>
+  <div class="signup">
+    <p>It's free, easy and exciting</p>
+    <%= link_to "Get Started", signup_path, :class => "signup_button round" %>
+  </div>
 <% end %>
